@@ -15,30 +15,30 @@ import Profile from "./pages/Profile";
 import Container from "./styles/Container";
 
 export default () => {
-	const role = useSelector(state => state.user.role);
+  const role = useSelector((state) => state.user.role);
 
-	const studentRoutes = (
-		<Switch>
-			<Route path="/mycourses" component={MyCourses} />
-			<Route path="/profile/:userId" component={Profile} />
-			<Route path="/" component={Explore}></Route>
-		</Switch>
-	);
+  const studentRoutes = (
+    <Switch>
+      <Route path="/mycourses" component={MyCourses} />
+      <Route path="/profile/:userId" component={Profile} />
+      <Route path="/" component={Explore}></Route>
+    </Switch>
+  );
 
-	const facultyRoutes = (
-		<Switch>
-			<Route path="/profile/:userId" component={Profile} />
-			<Route path="/newcourse" component={NewCourse} />
-			<Route path="/" component={MyCourses}></Route>
-		</Switch>
-	);
+  const facultyRoutes = (
+    <Switch>
+      <Route path="/profile/:userId" component={Profile} />
+      <Route path="/newcourse" component={NewCourse} />
+      <Route path="/" component={MyCourses}></Route>
+    </Switch>
+  );
 
-	return (
-		<Router>
-			<Sidebar />
-			<Container>
-				{role === "student" ? studentRoutes : facultyRoutes}
-			</Container>
-		</Router>
-	);
+  return (
+    <Router>
+      <Sidebar />
+      <Container>
+        {role === "student" ? studentRoutes : facultyRoutes}
+      </Container>
+    </Router>
+  );
 };

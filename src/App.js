@@ -9,15 +9,15 @@ import Auth from "./pages/Auth";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-	const loggedIn = useSelector(state => state.user.name);
+  const loggedIn = useSelector((state) => state.user.name);
 
-	return (
-		<ThemeProvider theme={theme}>
-			<GlobalStyle />
-			<ToastContainer autoClose={2000} closeButton={false} />
-			{loggedIn ? <Router /> : <Auth />}
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <ToastContainer autoClose={2000} closeButton={false} />
+      {loggedIn ? <Router /> : <Auth />}
+    </ThemeProvider>
+  );
 };
 
 export default App;

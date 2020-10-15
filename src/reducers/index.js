@@ -7,8 +7,8 @@ import myCourses from "./myCourses";
 import profile from "./profile";
 
 export default combineReducers({
-	user,
-	explore,
-	myCourses,
-	profile,
+  user,
+  explore,
+  myCourses,
+  profile,
 });
