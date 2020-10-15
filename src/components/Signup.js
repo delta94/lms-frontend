@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../actions';
 
 export const StyledSignup = styled.div`
 	h2 {
@@ -7,21 +9,27 @@ export const StyledSignup = styled.div`
 	}
 
 	input,
-	select {
+	select,
+	textarea {
 		padding: 0.4rem 1rem;
 		display: block;
 		margin-bottom: 1rem;
 		color: ${props => props.theme.primaryColor};
-		background-color: #F0F4F8;
-		border: 1px solid #F0F4F8;
+		background-color: ${props => props.theme.gray};
+		border: 1px solid ${props => props.theme.gray};
 	}
 
 	input::placeholder {
-		color: ${props => props.theme.gray};
+		color: ${props => props.theme.secondaryColor};
 	}
 
 	select {
 		appearance: none;
+	}
+
+	textarea {
+		width: 353px;
+    height: 61px;
 	}
 
 	form button {
@@ -43,6 +51,8 @@ export const StyledSignup = styled.div`
 `;
 
 const Signup = ({ loginAuth }) => {
+	const dispatch = useDispatch();
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -55,7 +65,7 @@ const Signup = ({ loginAuth }) => {
 
 	const handleFormSubmit = e => {
 		e.preventDefault();
-		console.log(formData);
+		dispatch(signupUser(formData));
 	};
 
 	return (

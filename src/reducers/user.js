@@ -1,15 +1,16 @@
 import { LOGIN, LOGOUT, SIGNUP } from "../actions/types";
 
-const initialState = {};
+const localSt = JSON.parse(localStorage.getItem("user"));
+const initialState = localSt ? localSt : {};
 
 const user = (state = initialState, action) => {
 	switch (action.type) {
 		case SIGNUP:
 			return action.payload;
 		case LOGIN:
-			return state;
+			return action.payload;
 		case LOGOUT:
-			return state;
+			return {};
 		default:
 			return state;
 	}

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 	html {
@@ -31,7 +31,16 @@ export default createGlobalStyle`
 		color: inherit;
 	}
 
-	button, input, select {
+	button {
+		cursor: pointer;
+	}
+
+	button[disabled] {
+		opacity: 0.2;
+		cursor: not-allowed;
+	}
+
+	textarea, button, input, select {
 		font-size: 1rem;
 		font-family: ${props => props.theme.font}, sans-serif;
 	}
@@ -40,7 +49,17 @@ export default createGlobalStyle`
 		list-style-type: none;
 	}
 
-	select:focus, video:focus, input:focus, button:focus, a:focus {
+	textarea:focus, select:focus, video:focus, input:focus, button:focus, a:focus {
 		outline: none;
 	}
-`
+
+	.Toastify__toast {
+		font-family: ${props => props.theme.font}, sans-serif;
+		border-radius: 4px;
+	}
+
+	.Toastify__toast--dark, .Toastify__toast--default {
+		background: ${props => props.theme.accentColor};
+		color: ${props => props.theme.white};
+	}
+`;

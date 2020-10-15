@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
+import { addToCourses } from '../actions';
+import { toast } from 'react-toastify';
 
 const Wrapper = styled.div`
 	position: relative;
-	width: 50%;
-	background-color: ${props => props.theme.gray};
 	padding: 1rem 0;
 	padding-bottom: 0rem;
 	margin: 1rem 0;
 	border-radius: 5px;
+	background-color: ${props => props.theme.gray};
 
 	h3,
 	p {
@@ -16,7 +18,14 @@ const Wrapper = styled.div`
 	}
 
 	h3 {
-		color: ${props => props.theme.black};
+		font-weight: 500;
+		margin-bottom: 0.8rem;
+	}
+
+	.name-register {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	.faculty {
@@ -42,7 +51,7 @@ const Wrapper = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		margin-top: 1rem;
-		border-top: 2px solid ${props => props.theme.ruler};
+		border-top: 1px solid ${props => props.theme.ruler};
 		padding: 0.8rem 1rem;
 	}
 
@@ -53,13 +62,39 @@ const Wrapper = styled.div`
 		font-size: 0.9rem;
 		color: ${props => props.theme.white};
 		border-radius: 2px;
+		margin-right: 1rem;
+		position: relative;
+		top: -5px;
 	}
 `;
 
-const CourseCard = ({ course }) => {
+const CourseCard = ({ course, registerHide }) => {
+	const user = useSelector(state => state.user);
+	const dispatch = useDispatch();
+
+	const [register, setRegister] = useState(course.students.includes(user._id));
+
+	const handleAddCourse = () => {
+		setRegister(true);
+		toast("Registration successful");
+		dispatch(addToCourses(course));
+	};
+
 	return (
 		<Wrapper>
-			<h3>{course.name}</h3>
+			<div className="name-register">
+				<h3>{course.name}</h3>
+				{!registerHide && (
+					<button
+						onClick={handleAddCourse}
+						disabled={register}
+						className="register"
+					>
+						Register
+					</button>
+				)}
+			</div>
+
 			<p>{course.description}</p>
 
 			<div className="faculty">
@@ -70,9 +105,7 @@ const CourseCard = ({ course }) => {
 			</div>
 
 			<div className="footer">
-				<span>
-					Remaining spots: {course.capacity - course.students.length}
-				</span>
+				<span>Remaining spots: {course.capacity - course.students.length}</span>
 
 				<span>Room: {course.room}</span>
 			</div>
