@@ -14,7 +14,7 @@ const CourseForm = ({ signupAuth }) => {
 	const handleInputChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
-	const handleFormSubmit = async e => {
+	const handleCourseForm = async e => {
 		e.preventDefault();
 
 		const course = { ...formData, capacity: parseInt(formData.capacity) };
@@ -31,7 +31,7 @@ const CourseForm = ({ signupAuth }) => {
 
 		const { token } = JSON.parse(localStorage.getItem("user"));
 
-		const res = await fetch(`${process.env.REACT_APP_BE_ENDPOINT}/courses`, {
+		await fetch(`${process.env.REACT_APP_BE_ENDPOINT}/courses`, {
 			method: "POST",
 			body: JSON.stringify(course),
 			headers: {
@@ -39,13 +39,11 @@ const CourseForm = ({ signupAuth }) => {
 				authorization: `Bearer ${token}`
 			}
 		});
-
-		const data = await res.json();
 	};
 
 	return (
 		<StyledSignup>
-			<form onSubmit={handleFormSubmit}>
+			<form onSubmit={handleCourseForm}>
 				<div className="input-group">
 					<label htmlFor="name">Name</label>
 					<input

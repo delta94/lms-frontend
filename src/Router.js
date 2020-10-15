@@ -8,10 +8,7 @@ import Sidebar from "./components/Sidebar";
 // pages
 import Explore from "./pages/Explore";
 import MyCourses from "./pages/MyCourses";
-
-import Students from "./pages/Students";
 import NewCourse from "./pages/NewCourse";
-
 import Profile from "./pages/Profile";
 
 // styles
@@ -20,27 +17,27 @@ import Container from "./styles/Container";
 export default () => {
 	const role = useSelector(state => state.user.role);
 
-	const facultyRoutes = (
-		<Switch>
-			<Route path="/newcourse" component={NewCourse} />
-			<Route exact path="/" component={Students} />
-		</Switch>
-	);
-
 	const studentRoutes = (
 		<Switch>
 			<Route path="/mycourses" component={MyCourses} />
-			<Route exact path="/" component={Explore} />
+			<Route path="/profile/:userId" component={Profile} />
+			<Route path="/" component={Explore}></Route>
+		</Switch>
+	);
+
+	const facultyRoutes = (
+		<Switch>
+			<Route path="/profile/:userId" component={Profile} />
+			<Route path="/newcourse" component={NewCourse} />
+			<Route path="/" component={MyCourses}></Route>
 		</Switch>
 	);
 
 	return (
 		<Router>
 			<Sidebar />
-
 			<Container>
 				{role === "student" ? studentRoutes : facultyRoutes}
-				<Route path="/profile/:userId" component={Profile} />
 			</Container>
 		</Router>
 	);

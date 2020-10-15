@@ -89,7 +89,7 @@ const Sidebar = () => {
 	const facultyLinks = (
 		<ul>
 			<li>
-				<Link to="/">Students</Link>
+				<Link to="/">My Courses</Link>
 			</li>
 			<li>
 				<Link to="/newcourse">New Course</Link>

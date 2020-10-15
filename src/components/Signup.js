@@ -17,6 +17,7 @@ export const StyledSignup = styled.div`
 		color: ${props => props.theme.primaryColor};
 		background-color: ${props => props.theme.gray};
 		border: 1px solid ${props => props.theme.gray};
+		margin-right: 2rem;
 	}
 
 	input::placeholder {
@@ -47,6 +48,11 @@ export const StyledSignup = styled.div`
 	.switch-auth span {
 		cursor: pointer;
 		border-bottom: 2px solid ${props => props.theme.accentColor};
+	}
+
+	.flex-input {
+		display: flex;
+		align-items: center;
 	}
 `;
 

@@ -4,7 +4,10 @@ import {
 	SIGNUP,
 	GET_MY_COURSES,
 	GET_COURSES,
-	ADD_TO_COURSES
+	ADD_TO_COURSES,
+	GET_PROFILE,
+	UPDATE_PROFILE,
+	UPDATE_PROFILE_FIELD
 } from "./types";
 import { authenticate } from "../utils";
 
@@ -82,4 +85,47 @@ export const addToCourses = course => async dispatch => {
 			}
 		}
 	);
+};
+
+export const getProfile = () => async dispatch => {
+	const { token } = JSON.parse(localStorage.getItem("user"));
+
+	const res = await fetch(`${process.env.REACT_APP_BE_ENDPOINT}/profile`, {
+		headers: {
+			"content-type": "application/json",
+			authorization: `Bearer ${token}`
+		}
+	});
+
+	const data = await res.json();
+
+	dispatch({
+		type: GET_PROFILE,
+		payload: data.data
+	});
+};
+
+export const updateProfile = profile => async dispatch => {
+	dispatch({
+		type: UPDATE_PROFILE,
+		payload: profile
+	});
+
+	const { token } = JSON.parse(localStorage.getItem("user"));
+
+	await fetch(`${process.env.REACT_APP_BE_ENDPOINT}/profile`, {
+		method: "POST",
+		body: JSON.stringify(profile),
+		headers: {
+			"content-type": "application/json",
+			authorization: `Bearer ${token}`
+		}
+	});
+};
+
+export const updateProfileField = field => async dispatch => {
+	dispatch({
+		type: UPDATE_PROFILE_FIELD,
+		payload: field
+	});
 };

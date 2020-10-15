@@ -22,7 +22,6 @@ const Explore = () => {
 		<Wrapper>
 			<h1>My Courses</h1>
 		  {myCourses.map(course => <CourseCard key={course._id} registerHide={true} course={course}/>)}
-			{myCourses.length < 1 && <p>You haven't registered to any courses yet.</p>}
 		</Wrapper>
 	)
 }
