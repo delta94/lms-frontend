@@ -3,6 +3,8 @@ import styled from "styled-components";
 import CourseForm from "../components/CourseForm";
 
 const Wrapper = styled.div`
+	padding-bottom: 60px;
+
   h2 {
     margin-bottom: 0.8rem;
   }
