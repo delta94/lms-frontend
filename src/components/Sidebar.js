@@ -144,7 +144,7 @@ const Sidebar = () => {
 				{role === "faculty" && facultyLinks}
 				{role === "student" && studentLinks}
 
-				<div className="logout" onClick={() => dispatch(logoutUser)}>
+				<div className="logout" onClick={() => dispatch(logoutUser())}>
 					<LogoutIcon />
 					<span>Logout</span>
 				</div>
