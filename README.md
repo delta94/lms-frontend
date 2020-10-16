@@ -1,6 +1,10 @@
 # Learning Management System
 
-A simple learning management system that allows students to register for coures and faculty to create courses. The frontend is built with React and Redux. 
+A simple learning management system that allows students to register for coures and faculty to create courses. The frontend is built with React and Redux.
+
+Here's the [backend repo](https://github.com/manikandanraji/lms-backend)
+
+Checkout the [deployed site](https://gallant-morse-3bdff0.netlify.app/)
 
 ## Features
 
@@ -11,19 +15,25 @@ A simple learning management system that allows students to register for coures 
 ## UI
 
 ## Signup
+
 ![Signup](screenshots/signup.png)
 
 ## Login
+
 ![Login](screenshots/login.png)
 
 ## Explore (student only)
+
 ![Explore](screenshots/explore.png)
 
 ## My Courses
+
 ![My Courses](screenshots/my_courses.png)
 
 ## New Course (faculty only)
+
 ![New Course](screenshots/new_course.png)
 
 ## Profile
+
 ![Profile](screenshots/profile.png)
