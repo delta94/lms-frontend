@@ -5,6 +5,8 @@ import CourseCard from "../components/CourseCard";
 import { getMyCourses } from "../actions";
 
 const Wrapper = styled.div`
+	padding-bottom: 40px;
+
   h1 {
     color: ${(props) => props.theme.black};
   }

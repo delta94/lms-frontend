@@ -15,11 +15,12 @@ export default createGlobalStyle`
 	body {
 		margin: 2rem auto;
 		width: 90%;
-		font-family: ${(props) => props.theme.font}, sans-serif;
+		font-family: ${props => props.theme.font}, sans-serif;
 		font-size: 1rem;
-		background: ${(props) => props.theme.bg};
-		color: ${(props) => props.theme.primaryColor};
+		background: ${props => props.theme.bg};
+		color: ${props => props.theme.primaryColor};
 		line-height: 1.8;
+		overflow-x: hidden;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -42,7 +43,7 @@ export default createGlobalStyle`
 
 	textarea, button, input, select {
 		font-size: 1rem;
-		font-family: ${(props) => props.theme.font}, sans-serif;
+		font-family: ${props => props.theme.font}, sans-serif;
 	}
 
 	ul {
@@ -54,12 +55,18 @@ export default createGlobalStyle`
 	}
 
 	.Toastify__toast {
-		font-family: ${(props) => props.theme.font}, sans-serif;
+		font-family: ${props => props.theme.font}, sans-serif;
 		border-radius: 4px;
 	}
 
 	.Toastify__toast--dark, .Toastify__toast--default {
-		background: ${(props) => props.theme.accentColor};
-		color: ${(props) => props.theme.white};
+		background: ${props => props.theme.accentColor};
+		color: ${props => props.theme.white};
+	}
+
+	@media screen and (max-width: 600px) {
+		body {
+			font-size: 0.9rem;
+		}
 	}
 `;

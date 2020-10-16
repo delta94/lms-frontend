@@ -4,43 +4,68 @@ import styled from "styled-components";
 import EditProfile from "../components/EditProfile";
 
 const Wrapper = styled.div`
-  .avatar-name {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+	padding-bottom: 70px;
 
-  input {
-    margin-bottom: 1.5rem;
-  }
+	.avatar-name {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
 
-  img.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    border: 2px solid ${(props) => props.theme.accentColor};
-    margin-right: 0.8rem;
-  }
+	input {
+		margin-bottom: 1.5rem;
+	}
 
-  textarea {
-    height: 73px;
-    width: 735px;
-  }
+	img.avatar {
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+		border: 2px solid ${props => props.theme.accentColor};
+		margin-right: 0.8rem;
+	}
+
+	textarea {
+		height: 73px;
+		width: 735px;
+	}
+
+	@media screen and (max-width: 1093px) {
+		.flex-input {
+			flex-direction: column;
+			align-items: start;
+		}
+
+		textarea {
+			width: 353px;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.avatar-name {
+			margin-bottom: 2rem;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 320px;
+		}
+	}
 `;
 
 const Profile = () => {
-  const user = useSelector((state) => state.user);
+	const user = useSelector(state => state.user);
 
-  return (
-    <Wrapper>
-      <div className="avatar-name">
-        <img className="avatar" src={user.avatar} alt="avatar" />
-        <h1>{user.name}</h1>
-      </div>
+	return (
+		<Wrapper>
+			<div className="avatar-name">
+				<img className="avatar" src={user.avatar} alt="avatar" />
+				<h1>{user.name}</h1>
+			</div>
 
-      <EditProfile />
-    </Wrapper>
-  );
+			<EditProfile />
+		</Wrapper>
+	);
 };
 
 export default Profile;
