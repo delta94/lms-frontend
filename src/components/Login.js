@@ -44,7 +44,7 @@ const Login = ({ signupAuth }) => {
             onChange={handleInputChange}
             value={formData.password}
             placeholder="mysupersecurepassword"
-            minlength="6"
+            minLength="6"
             required
           />
         </div>

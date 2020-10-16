@@ -39,7 +39,7 @@ export const signupUser = (credentials) => async (dispatch) => {
 export const logoutUser = (dispatch) => {
   localStorage.removeItem("user");
 
-  toast("You are logged out");
+	toast("You are logged out", { autoClose: 1000 });
 
   dispatch({
     type: LOGOUT,
@@ -47,7 +47,7 @@ export const logoutUser = (dispatch) => {
 
   setTimeout(() => {
     window.location = "/";
-  }, 2200);
+  }, 1200);
 };
 
 export const getCourses = () => async (dispatch) => {
