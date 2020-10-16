@@ -31,6 +31,7 @@ const Login = ({ signupAuth }) => {
             onChange={handleInputChange}
             value={formData.email}
             placeholder="wesbos@gmail.com"
+            required
           />
         </div>
 
@@ -43,6 +44,8 @@ const Login = ({ signupAuth }) => {
             onChange={handleInputChange}
             value={formData.password}
             placeholder="mysupersecurepassword"
+            minlength="6"
+            required
           />
         </div>
         <button>Login</button>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../actions";
 
@@ -71,6 +72,11 @@ const Signup = ({ loginAuth }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.role) {
+      return toast("You should specify your role");
+    }
+
     dispatch(signupUser(formData));
   };
 
@@ -86,6 +92,7 @@ const Signup = ({ loginAuth }) => {
             onChange={handleInputChange}
             value={formData.name}
             placeholder="Wes Bos"
+            required
           />
         </div>
 
@@ -97,6 +104,7 @@ const Signup = ({ loginAuth }) => {
             onChange={handleInputChange}
             value={formData.email}
             placeholder="wesbos@gmail.com"
+            required
           />
         </div>
 
@@ -109,12 +117,14 @@ const Signup = ({ loginAuth }) => {
             onChange={handleInputChange}
             value={formData.password}
             placeholder="mysupersecurepassword"
+            minlength="6"
+            required
           />
         </div>
 
         <div className="input-group">
           <label htmlFor="role">Select your role</label>
-          <select name="role" onChange={handleInputChange}>
+          <select name="role" onChange={handleInputChange} required>
             <option>--select your role--</option>
             <option value="student">Student</option>
             <option value="faculty">Faculty</option>

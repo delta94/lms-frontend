@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { addToCourses } from "../actions";
 import { toast } from "react-toastify";
+import { client } from "../utils";
 
 const Wrapper = styled.div`
   position: relative;
@@ -70,14 +70,15 @@ const Wrapper = styled.div`
 
 const CourseCard = ({ course, registerHide }) => {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const [register, setRegister] = useState(course.students.includes(user._id));
 
-  const handleAddCourse = () => {
+  const handleAddCourse = async () => {
+    await client(
+      `${process.env.REACT_APP_BE_ENDPOINT}/courses/${course._id}/register`
+    );
     setRegister(true);
     toast("Registration successful");
-    dispatch(addToCourses(course));
   };
 
   return (

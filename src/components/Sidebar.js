@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../actions";
-import { LogoutIcon } from "./Icons";
+import {
+  ProfileIcon,
+  TrendingIcon,
+  BookIcon,
+  PlusIcon,
+  LogoutIcon,
+} from "./Icons";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -41,11 +47,11 @@ const Wrapper = styled.div`
     fill: ${(props) => props.theme.secondaryColor};
   }
 
-  li.selected {
+  .selected {
     color: ${(props) => props.theme.primaryColor};
   }
 
-  li.selected svg {
+  .selected svg {
     fill: ${(props) => props.theme.primaryColor};
   }
 
@@ -75,13 +81,20 @@ const Sidebar = () => {
   const studentLinks = (
     <ul>
       <li>
-        <Link to="/">Explore</Link>
+        <NavLink exact to="/" activeClassName="selected">
+          <TrendingIcon />
+          Explore
+        </NavLink>
       </li>
       <li>
-        <Link to="/mycourses">My Courses</Link>
+        <NavLink to="/mycourses" activeClassName="selected">
+          <BookIcon /> My Courses
+        </NavLink>
       </li>
       <li>
-        <Link to={`/profile/${_id}`}>Profile</Link>
+        <NavLink to={`/profile/${_id}`} activeClassName="selected">
+          <ProfileIcon /> Profile
+        </NavLink>
       </li>
     </ul>
   );
@@ -89,13 +102,19 @@ const Sidebar = () => {
   const facultyLinks = (
     <ul>
       <li>
-        <Link to="/">My Courses</Link>
+        <NavLink exact to="/" activeClassName="selected">
+          <BookIcon /> My Courses
+        </NavLink>
       </li>
       <li>
-        <Link to="/newcourse">New Course</Link>
+        <NavLink to="/newcourse" activeClassName="selected">
+          <PlusIcon /> New Course
+        </NavLink>
       </li>
       <li>
-        <Link to={`/profile/${_id}`}>Profile</Link>
+        <NavLink to={`/profile/${_id}`} activeClassName="selected">
+          <ProfileIcon /> Profile
+        </NavLink>
       </li>
     </ul>
   );

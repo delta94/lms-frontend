@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { StyledSignup } from "./Signup";
 import Input from "./Input";
-import { updateProfile, updateProfileField, getProfile } from "../actions";
+import { updateProfileField, getProfile } from "../actions";
+import { client } from "../utils";
 
 const EditProfile = ({ loginAuth }) => {
   const { userId } = useParams();
@@ -14,9 +15,12 @@ const EditProfile = ({ loginAuth }) => {
   const handleInputChange = (e) =>
     dispatch(updateProfileField({ [e.target.name]: e.target.value }));
 
-  const handleUpdateProfile = (e) => {
+  const handleUpdateProfile = async (e) => {
     e.preventDefault();
-    dispatch(updateProfile(profile));
+    await client(`${process.env.REACT_APP_BE_ENDPOINT}/profile`, {
+      body: profile,
+      method: "PUT",
+    });
     toast("Profile updated!");
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyledSignup } from "./Signup";
 import { toast } from "react-toastify";
+import { client } from "../utils";
 
 const CourseForm = ({ signupAuth }) => {
   const [formData, setFormData] = useState({
@@ -11,14 +12,7 @@ const CourseForm = ({ signupAuth }) => {
     room: "",
   });
 
-  const handleInputChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleCourseForm = async (e) => {
-    e.preventDefault();
-
-    const course = { ...formData, capacity: parseInt(formData.capacity) };
-
+  const clearForm = () =>
     setFormData({
       name: "",
       description: "",
@@ -27,18 +21,24 @@ const CourseForm = ({ signupAuth }) => {
       room: "",
     });
 
-    toast("Course created successfully");
+  const handleInputChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const { token } = JSON.parse(localStorage.getItem("user"));
+  const handleCourseForm = async (e) => {
+    e.preventDefault();
 
-    await fetch(`${process.env.REACT_APP_BE_ENDPOINT}/courses`, {
-      method: "POST",
-      body: JSON.stringify(course),
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
+    if (!formData.department) {
+      return toast("You need to specify your department");
+    }
+
+    const course = { ...formData, capacity: parseInt(formData.capacity) };
+
+    await client(`${process.env.REACT_APP_BE_ENDPOINT}/courses`, {
+      body: course,
     });
+
+    clearForm();
+    toast("Course created successfully");
   };
 
   return (
